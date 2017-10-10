@@ -9,6 +9,8 @@ import android.widget.TextView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.widget.Toast;
+
 import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
@@ -72,17 +74,29 @@ public class MainActivity extends AppCompatActivity {
                 scoreB+=1;
 
                 teamB.setText(""+ scoreB);
+
+            }
+        });
+        Button reset = (Button) findViewById(R.id.reset);
+        reset.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+
                 dialogBox();
 
             }
         });
 
-
     }
     public void dialogBox()
     {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Click on Image for tag");
+        if(scoreA>scoreB)
+        alertDialogBuilder.setMessage("Team A Won");
+        else if(scoreA<scoreB)
+        alertDialogBuilder.setMessage("Team B Won");
+        else if(scoreA==scoreB)
+        alertDialogBuilder.setMessage("Tie");
         alertDialogBuilder.setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
 
